@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubhaditya Shubham — AI Product Manager</title>
+<meta name="description" content="AI-First Product Manager. 0–1 Builder. LLM Products. 7+ years across product, data, and operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #060A0F;
+  --bg2:     #0C1118;
+  --bg3:     #111820;
+  --border:  #1A2535;
+  --accent:  #00E5C3;
+  --blue:    #0099FF;
+  --warn:    #FF6B35;
+  --purple:  #A855F7;
+  --text:    #E2EAF4;
+  --muted:   #7A8FA8;
+  --dim:     #344A62;
+  --font-h:    'Syne', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
+  --glow: 0 0 20px rgba(0,229,195,0.15);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ── CUSTOM CURSOR ─────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: width .15s, height .15s, background .15s;
+  box-shadow: 0 0 10px var(--accent), 0 0 30px rgba(0,229,195,.4);
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(0,229,195,.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: transform .08s linear, width .2s, height .2s, border-color .2s;
+}
+body.cursor-hover #cursor-dot { width: 12px; height: 12px; background: #fff; box-shadow: 0 0 15px var(--accent), 0 0 50px rgba(0,229,195,.5); }
+body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--accent); }
+
+/* ── NEURAL CANVAS ─────────────────────────────── */
+#neural-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+}
+
+/* ── NOISE OVERLAY ─────────────────────────────── */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9998;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* ── LAYOUT ────────────────────────────────────── */
+.layout { display:flex; min-height:100vh; position:relative; z-index:10; }
+
+/* ── SIDEBAR ───────────────────────────────────── */
+.sidebar {
+  position:fixed; top:0; left:0;
+  width:270px; height:100vh;
+  background: #0C1118;
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column;
+  overflow-y:auto; z-index:200;
+}
+.sb-brand { padding:36px 28px 24px; border-bottom:1px solid var(--border); }
+.sb-name { font-family:var(--font-h); font-size:18px; font-weight:800; line-height:1.2; }
+.sb-role { font-family:var(--font-mono); font-size:9px; color:var(--accent); margin-top:7px; letter-spacing:1.5px; }
+.sb-status {
+  display:flex; align-items:center; gap:7px;
+  margin-top:14px; font-family:var(--font-mono); font-size:10px; color:var(--muted);
+}
+.dot { width:7px; height:7px; border-radius:50%; background:#2ECC71; box-shadow:0 0 8px #2ECC71; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.sb-nav { flex:1; padding:20px 0; }
+.nav-label { font-family:var(--font-mono); font-size:9px; color:var(--dim); letter-spacing:2px; padding:18px 28px 6px; text-transform:uppercase; }
+.nav-item {
+  display:flex; align-items:center; gap:10px;
+  padding:9px 28px; font-size:13px; font-weight:500;
+  color:var(--muted); cursor:none;
+  border-left:2px solid transparent;
+  transition:all .18s;
+}
+.nav-item:hover { color:var(--text); background:rgba(0,229,195,.04); }
+.nav-item.active { color:var(--accent); border-left-color:var(--accent); background:rgba(0,229,195,.06); }
+.nav-icon { font-size:13px; width:18px; text-align:center; }
+
+/* Terminal nav item */
+.nav-item.terminal-nav {
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  color: var(--accent);
+}
+.nav-item.terminal-nav:hover { background: rgba(0,229,195,.08); }
+
+.sb-contact { padding:18px 28px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:10px; }
+.clink { display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10px; color:var(--muted); transition:color .18s; cursor:none; }
+.clink:hover { color:var(--accent); }
+
+/* ── MAIN ──────────────────────────────────────── */
+.main { margin-left:270px; flex:1; min-width:0; position:relative; z-index:10; }
+
+/* ── HERO ──────────────────────────────────────── */
+.hero {
+  position:relative; padding:80px 64px 64px;
+  border-bottom:1px solid var(--border); overflow:hidden;
+  min-height: 100vh; display:flex; flex-direction:column; justify-content:center;
+  background: var(--bg);
+}
+.hero-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(0,229,195,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,195,.03) 1px, transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,.25) 20%,transparent);
+  pointer-events:none;
+}
+.hero-glow-1 { position:absolute; width:600px; height:600px; right:-100px; top:-120px; background:radial-gradient(circle, rgba(0,229,195,.06) 0%, transparent 60%); pointer-events:none; }
+.hero-glow-2 { position:absolute; width:400px; height:400px; left:-80px; bottom:-80px; background:radial-gradient(circle, rgba(0,153,255,.04) 0%, transparent 60%); pointer-events:none; }
+
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:10px; color:var(--accent);
+  border:1px solid rgba(0,229,195,.25); padding:5px 14px; border-radius:3px;
+  background:rgba(0,229,195,.05); margin-bottom:28px; letter-spacing:1.5px;
+  width:fit-content;
+  animation: fadeSlideIn .6s ease forwards;
+}
+@keyframes fadeSlideIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-name {
+  font-family:var(--font-h); font-size:clamp(44px,5.5vw,72px);
+  font-weight:800; line-height:1; letter-spacing:-2.5px;
+  margin-bottom:8px;
+  animation: fadeSlideIn .7s .1s ease both;
+}
+.hero-name span { color:var(--accent); }
+
+.hero-title {
+  font-family:var(--font-mono); font-size:13px; color:var(--muted);
+  margin-bottom:28px; display:flex; align-items:center; gap:8px;
+  animation: fadeSlideIn .7s .2s ease both;
+}
+.hero-title::before { content:'>_'; color:var(--accent); }
+#typed { color:var(--text); }
+.cursor { display:inline-block; width:2px; height:14px; background:var(--accent); animation:blink 1s infinite; vertical-align:middle; margin-left:2px; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-summary {
+  max-width:640px; font-size:15px; color:var(--muted); line-height:1.9;
+  margin-bottom:40px;
+  animation: fadeSlideIn .7s .3s ease both;
+}
+.hero-summary strong { color:var(--text); font-weight:500; }
+
+.hero-stats {
+  display:flex; gap:48px; flex-wrap:wrap;
+  animation: fadeSlideIn .7s .4s ease both;
+}
+.stat-item { position:relative; }
+.stat-num { font-family:var(--font-h); font-size:32px; font-weight:800; line-height:1; }
+.stat-num sup { color:var(--accent); font-size:18px; }
+.stat-lbl { font-family:var(--font-mono); font-size:9px; color:var(--dim); letter-spacing:1.5px; text-transform:uppercase; margin-top:4px; }
+
+/* ── SECTIONS ──────────────────────────────────── */
+.sec { padding:60px 64px; border-bottom:1px solid var(--border); position:relative; background:var(--bg); }
+.sec-label { display:flex; align-items:center; gap:12px; margin-bottom:44px; }
+.sec-num { font-family:var(--font-mono); font-size:10px; color:var(--dim); }
+.sec-title { font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:3px; text-transform:uppercase; }
+.sec-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── TIMELINE ──────────────────────────────────── */
+.tl-item {
+  display:grid; grid-template-columns:190px 1fr; gap:0 32px;
+  padding:32px 0; border-bottom:1px solid var(--border);
+  opacity:0; transform:translateY(20px); transition:opacity .6s, transform .6s;
+}
+.tl-item.vis { opacity:1; transform:translateY(0); }
+.tl-item:last-child { border-bottom:none; }
+.tl-date { font-family:var(--font-mono); font-size:10px; color:var(--accent); margin-bottom:5px; }
+.tl-company { font-size:12px; color:var(--muted); font-weight:500; }
+.tl-role { font-family:var(--font-h); font-size:20px; font-weight:700; margin-bottom:16px; line-height:1.2; }
+.tl-bullets { display:flex; flex-direction:column; gap:12px; }
+.tl-b { display:flex; gap:12px; font-size:14px; color:#A8BCCE; line-height:1.8; }
+.tl-b::before { content:'→'; color:var(--accent); font-family:var(--font-mono); font-size:11px; margin-top:5px; flex-shrink:0; }
+.hi { color:var(--accent); font-weight:400; }
+
+/* ── PROJECT CARDS (3D TILT) ───────────────────── */
+.proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:18px; }
+
+.proj-card {
+  background: var(--bg2);
+  border:1px solid var(--border); border-radius:10px; padding:26px;
+  position:relative; overflow:hidden; cursor:none;
+  opacity:0; transform:translateY(18px);
+  transition:opacity .5s, transform .5s, border-color .25s, box-shadow .25s;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.proj-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--blue));
+  opacity:0; transition:opacity .25s;
+}
+.proj-card:hover::before { opacity:1; }
+.proj-card.vis { opacity:1; transform:translateY(0); }
+.proj-card:hover { border-color:rgba(0,229,195,.35); box-shadow:0 12px 50px rgba(0,229,195,.08), 0 0 0 1px rgba(0,229,195,.08); }
+
+/* card inner glow on hover */
+.proj-card::after {
+  content:''; position:absolute; inset:0; border-radius:10px;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,229,195,.05) 0%, transparent 60%);
+  opacity:0; transition:opacity .3s; pointer-events:none;
+}
+.proj-card:hover::after { opacity:1; }
+
+.proj-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+.proj-title { font-family:var(--font-h); font-size:15px; font-weight:700; line-height:1.3; flex:1; padding-right:10px; }
+.proj-year { font-family:var(--font-mono); font-size:9px; color:var(--dim); white-space:nowrap; padding-top:2px; }
+.proj-desc { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:16px; }
+.proj-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.tag { font-family:var(--font-mono); font-size:9px; padding:3px 8px; border-radius:3px; letter-spacing:.5px; }
+.t-n { background:rgba(0,229,195,.08); color:var(--accent); border:1px solid rgba(0,229,195,.2); }
+.t-l { background:rgba(0,153,255,.08); color:var(--blue); border:1px solid rgba(0,153,255,.2); }
+.t-s { background:rgba(255,107,53,.08); color:var(--warn); border:1px solid rgba(255,107,53,.2); }
+.t-r { background:rgba(168,85,247,.08); color:#A855F7; border:1px solid rgba(168,85,247,.2); }
+.t-g { background:rgba(234,179,8,.08); color:#EAB308; border:1px solid rgba(234,179,8,.2); }
+.t-a { background:rgba(236,72,153,.08); color:#EC4899; border:1px solid rgba(236,72,153,.2); }
+.proj-metric { display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:10px; color:var(--dim); }
+.mbadge { background:rgba(0,229,195,.1); color:var(--accent); border:1px solid rgba(0,229,195,.2); padding:2px 8px; border-radius:3px; }
+.proj-arrow { position:absolute; bottom:18px; right:18px; color:var(--accent); font-size:16px; opacity:0; transform:translate(-4px,4px); transition:all .2s; }
+.proj-card:hover .proj-arrow { opacity:1; transform:translate(0,0); }
+
+/* ── SKILLS ────────────────────────────────────── */
+.sk-layout { display:grid; grid-template-columns:1fr 1fr; gap:52px; }
+.sk-col-title { font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:2px; text-transform:uppercase; margin-bottom:18px; }
+.sk-item { margin-bottom:16px; opacity:0; transform:translateX(-12px); transition:opacity .45s, transform .45s; }
+.sk-item.vis { opacity:1; transform:translateX(0); }
+.sk-row { display:flex; justify-content:space-between; margin-bottom:6px; }
+.sk-name { font-size:13px; color:var(--text); font-weight:500; }
+.sk-lvl { font-family:var(--font-mono); font-size:9px; color:var(--dim); }
+.sk-bar { height:3px; background:var(--bg3); border-radius:2px; overflow:hidden; }
+.sk-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--accent),var(--blue)); width:0; transition:width 1.1s cubic-bezier(.4,0,.2,1); }
+.pills { display:flex; flex-wrap:wrap; gap:7px; }
+.pill {
+  font-family:var(--font-mono); font-size:10.5px; color:var(--muted);
+  border:1px solid var(--border); padding:5px 11px; border-radius:4px;
+  background:var(--bg2); cursor:none;
+  opacity:0; transform:scale(.93);
+  transition:opacity .35s, transform .35s, color .15s, border-color .15s, background .15s;
+}
+.pill.vis { opacity:1; transform:scale(1); }
+.pill:hover { color:var(--accent); border-color:rgba(0,229,195,.4); background:rgba(0,229,195,.04); }
+
+/* ── EDUCATION ─────────────────────────────────── */
+.edu-cards { display:flex; flex-direction:column; gap:14px; }
+.edu-card {
+  display:flex; align-items:flex-start; gap:20px;
+  background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:22px 24px;
+  opacity:0; transform:translateY(14px); transition:opacity .5s, transform .5s;
+}
+.edu-card.vis { opacity:1; transform:translateY(0); }
+.edu-icon { width:42px; height:42px; background:rgba(0,229,195,.08); border:1px solid rgba(0,229,195,.18); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.edu-degree { font-family:var(--font-h); font-size:15px; font-weight:700; margin-bottom:4px; }
+.edu-school { font-size:13px; color:var(--muted); margin-bottom:5px; }
+.edu-meta { font-family:var(--font-mono); font-size:10px; color:var(--accent); }
+
+/* ── FOOTER ────────────────────────────────────── */
+footer { padding:36px 64px; display:flex; justify-content:space-between; align-items:center; background:var(--bg); }
+.f-copy { font-family:var(--font-mono); font-size:10px; color:var(--dim); }
+.f-links { display:flex; gap:20px; }
+.f-link { font-family:var(--font-mono); font-size:10px; color:var(--muted); letter-spacing:1px; cursor:none; transition:color .18s; }
+.f-link:hover { color:var(--accent); }
+
+/* ── ASK TERMINAL ──────────────────────────────── */
+#terminal-overlay {
+  display:none;
+  position:fixed; inset:0; z-index:9000;
+  background: rgba(6,10,15,.85);
+  backdrop-filter: blur(16px);
+  align-items:center; justify-content:center;
+}
+#terminal-overlay.open { display:flex; }
+
+#terminal-box {
+  width: 680px; max-width: 94vw;
+  background: var(--bg2);
+  border: 1px solid rgba(0,229,195,.3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 40px rgba(0,229,195,.08);
+  animation: termOpen .25s ease;
+}
+@keyframes termOpen { from{opacity:0;transform:scale(.96) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+.term-header {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.term-dots { display:flex; gap:6px; }
+.term-dot { width:11px; height:11px; border-radius:50%; }
+.td-r { background:#FF5F57; }
+.td-y { background:#FEBC2E; }
+.td-g { background:#28C840; }
+.term-title { font-family:var(--font-mono); font-size:11px; color:var(--muted); flex:1; text-align:center; letter-spacing:.5px; }
+.term-close-btn { background:none; border:none; color:var(--muted); font-size:14px; cursor:none; padding:0 2px; transition:color .15s; }
+.term-close-btn:hover { color:var(--text); }
+
+#term-output {
+  padding: 20px 20px 8px;
+  height: 340px; overflow-y:auto;
+  font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7;
+  scroll-behavior: smooth;
+}
+#term-output::-webkit-scrollbar { width:5px; }
+#term-output::-webkit-scrollbar-track { background:transparent; }
+#term-output::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+.term-line { margin-bottom:4px; }
+.term-line.user { color:var(--accent); }
+.term-line.system { color:var(--muted); font-size:11px; }
+.term-line.ai { color:var(--text); white-space:pre-wrap; }
+.term-line.error { color:var(--warn); }
+.term-thinking { color:var(--blue); opacity:.7; animation: blink2 .7s infinite; }
+@keyframes blink2 { 0%,100%{opacity:.7} 50%{opacity:.2} }
+
+.term-input-row {
+  display:flex; align-items:center; gap:8px;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--border);
+}
+.term-prompt { font-family:var(--font-mono); font-size:12px; color:var(--accent); white-space:nowrap; }
+#term-input {
+  flex:1; background:none; border:none; outline:none;
+  font-family:var(--font-mono); font-size:12.5px; color:var(--text);
+  caret-color: var(--accent);
+  cursor: none;
+}
+.term-send-btn {
+  background: rgba(0,229,195,.1); border:1px solid rgba(0,229,195,.25);
+  color:var(--accent); border-radius:5px; padding:4px 10px;
+  font-family:var(--font-mono); font-size:10px; cursor:none;
+  transition:all .15s; letter-spacing:.5px;
+}
+.term-send-btn:hover { background:rgba(0,229,195,.2); }
+
+/* Suggested prompts */
+.term-suggestions {
+  padding: 0 20px 14px;
+  display:flex; flex-wrap:wrap; gap:6px;
+}
+.term-chip {
+  font-family:var(--font-mono); font-size:9.5px; color:var(--muted);
+  border:1px solid var(--border); padding:3px 9px; border-radius:20px;
+  background:var(--bg3); cursor:none; transition:all .15s;
+}
+.term-chip:hover { color:var(--accent); border-color:rgba(0,229,195,.3); }
+
+
+/* ── SCROLL PROGRESS ───────────────────────────── */
+#scroll-progress {
+  position:fixed; top:0; left:270px; right:0; height:2px;
+  background:linear-gradient(90deg, var(--accent), var(--blue));
+  transform-origin:left; transform:scaleX(0);
+  z-index:300; transition:transform .05s linear;
+}
+
+/* ── MOBILE ────────────────────────────────────── */
+@media(max-width:900px){
+  .layout { grid-template-columns:1fr; }
+  .sidebar { position:static; width:100%; height:auto; flex-direction:row; flex-wrap:wrap; padding:16px; border-right:none; border-bottom:1px solid var(--border); }
+  .sb-brand { padding:0 16px 0 0; border-bottom:none; }
+  .sb-nav { display:flex; flex-wrap:wrap; padding:0; flex:unset; }
+  .nav-label { display:none; }
+  .nav-item { padding:5px 10px; font-size:12px; }
+  .sb-contact { flex-direction:row; flex-wrap:wrap; padding:8px 0 0; border-top:none; gap:8px; }
+  .main { margin-left:0; }
+  .hero,.sec { padding:40px 24px; }
+  .tl-item { grid-template-columns:1fr; }
+  .tl-date,.tl-company { display:inline; }
+  .proj-grid { grid-template-columns:1fr; }
+  .sk-layout { grid-template-columns:1fr; gap:32px; }
+  footer { flex-direction:column; gap:14px; padding:28px 24px; }
+  #scroll-progress { left:0; }
+  body { cursor:auto; }
+  #cursor-dot, #cursor-ring { display:none; }
+}
+
+/* ── PRINT ─────────────────────────────────────── */
+@media print {
+  body { background:#fff; color:#111; cursor:auto; }
+  :root { --text:#111; --muted:#555; --accent:#0055cc; --bg2:#f5f5f5; --border:#ddd; --dim:#888; }
+  .sidebar { position:static; width:100%; height:auto; background:#f5f5f5; border:none; flex-direction:row; }
+  .main { margin-left:0; }
+  .hero-grid,.hero-glow-1,.hero-glow-2,body::after,#neural-canvas,#cursor-dot,#cursor-ring,#terminal-overlay,#scroll-progress { display:none!important; }
+  .sec { break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- NEURAL NETWORK CANVAS -->
+<canvas id="neural-canvas"></canvas>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- ASK TERMINAL -->
+<div id="terminal-overlay">
+  <div id="terminal-box">
+    <div class="term-header">
+      <div class="term-dots"><div class="term-dot td-r"></div><div class="term-dot td-y"></div><div class="term-dot td-g"></div></div>
+      <div class="term-title">ask_shubhaditya.sh — AI Interface v1.0</div>
+      <button class="term-close-btn" onclick="closeTerminal()">✕</button>
+    </div>
+    <div id="term-output">
+      <div class="term-line system">// Connected to Shubhaditya's AI interface</div>
+      <div class="term-line system">// Powered by Claude · Ask anything about his work</div>
+      <div class="term-line system">────────────────────────────────────────────</div>
+    </div>
+    <div class="term-suggestions" id="term-chips">
+      <span class="term-chip" onclick="chipClick(this)">What AI products has he built?</span>
+      <span class="term-chip" onclick="chipClick(this)">What's his tech stack?</span>
+      <span class="term-chip" onclick="chipClick(this)">Why hire him as AI PM?</span>
+      <span class="term-chip" onclick="chipClick(this)">Tell me about Uniply.ai</span>
+    </div>
+    <div class="term-input-row" id="term-input-row">
+      <span class="term-prompt">➜ ask ~</span>
+      <input id="term-input" type="text" placeholder="Type your question..." autocomplete="off" spellcheck="false">
+      <button class="term-send-btn" onclick="sendTerminalMessage()">SEND ↵</button>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-name">Shubhaditya<br>Shubham</div>
+    <div class="sb-role">// AI PRODUCT MANAGER</div>
+    <div class="sb-status"><span class="dot"></span>Open to opportunities</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="nav-label">Navigate</div>
+    <div class="nav-item active" onclick="goTo('hero')"><span class="nav-icon">◈</span>Overview</div>
+    <div class="nav-item" onclick="goTo('experience')"><span class="nav-icon">◎</span>Experience</div>
+    <div class="nav-item" onclick="goTo('projects')"><span class="nav-icon">◇</span>Projects</div>
+    <div class="nav-item" onclick="goTo('skills')"><span class="nav-icon">◉</span>Skills</div>
+    <div class="nav-item" onclick="goTo('education')"><span class="nav-icon">◌</span>Education</div>
+    <div class="nav-item terminal-nav" onclick="openTerminal()"><span class="nav-icon">⌨</span>Ask Shubhaditya</div>
+  </nav>
+  <div class="sb-contact">
+    <a class="clink" href="mailto:shubhadityashubham@gmail.com"><span>✉</span>shubhadityashubham@gmail.com</a>
+    <a class="clink" href="tel:+919389478989"><span>◎</span>+91 93894 78989</a>
+    <a class="clink" href="https://linkedin.com/in/shubhaditya-shubham" target="_blank"><span>⬡</span>linkedin/shubhaditya-shubham</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-tag"><span>▶</span>OPEN TO AI PM ROLES</div>
+  <h1 class="hero-name">Shubhaditya<br><span>Shubham.</span></h1>
+  <div class="hero-title"><span id="typed"></span><span class="cursor"></span></div>
+  <p class="hero-summary">
+    Analytically grounded PM with <strong>7+ years</strong> across product, data, and operations —
+    fully focused on <strong>AI-first product development</strong>.
+    Owned the complete lifecycle of <strong>Uniply.ai</strong> from 0 to commercial launch.
+    Independently shipped <strong>6 AI products</strong> across search, career intelligence,
+    compliance automation, voice QA, pitch analysis, and job discovery.
+    Hands-on with <strong>LLM APIs, n8n, RAG pipelines, and agentic workflows</strong>.
+  </p>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num" data-target="7" data-suffix="+">0</div><div class="stat-lbl">Years Experience</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="6">0</div><div class="stat-lbl">AI Products Shipped</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="75" data-suffix="%">0</div><div class="stat-lbl">AWS Cost Reduction</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="5" data-suffix="×">0</div><div class="stat-lbl">Capacity Scaled</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="sec-label"><span class="sec-num">01</span><span class="sec-title">Experience</span></div>
+  <div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-date">APR 2025 – FEB 2026</div>
+        <div class="tl-company">AdmitKard · Uniply.ai</div>
+      </div>
+      <div>
+        <div class="tl-role">Acting Product Manager</div>
+        <div class="tl-bullets">
+          <div class="tl-b">Owned end-to-end roadmap for Uniply.ai — an LLM-powered SaaS platform — from 0 to commercial launch using RICE prioritisation, aligning engineering and business stakeholders on quarterly goals.</div>
+          <div class="tl-b">Authored PRDs and MRDs for AI agent features, agentic workflows, and RAG-based retrieval systems; applied prompt engineering and context management to optimise model performance.</div>
+          <div class="tl-b">Led GTM execution — reduced AWS spend by 75%, scaled capacity 5×, cut manual effort by 50%. Tracked adoption KPIs via Mixpanel and Power BI.</div>
+          <div class="tl-b">Ran cross-functional sprint planning across engineering, ops, and customer success in an Agile/Scrum environment.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-date">MAR 2024 – MAR 2025</div>
+        <div class="tl-company">AdmitKard</div>
+      </div>
+      <div>
+        <div class="tl-role">Product Analyst</div>
+        <div class="tl-bullets">
+          <div class="tl-b">Conducted user research and competitive analysis on loan workflows; shipped MVPs for intelligent routing across 4+ banking integrations — achieving 80% reduction in manual processing.</div>
+          <div class="tl-b">Produced data-driven performance reports using SQL and Excel to support leadership prioritisation across sprint cycles.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-date">OCT 2022 – AUG 2023</div>
+        <div class="tl-company">Amazon Canada</div>
+      </div>
+      <div>
+        <div class="tl-role">Operations Associate</div>
+        <div class="tl-bullets">
+          <div class="tl-b">Built automated SQL-based KPI pipelines and volume forecasting models for large-scale fulfilment operations; identified bottlenecks contributing to measurable throughput gains.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div>
+        <div class="tl-date">AUG 2017 – JUN 2021</div>
+        <div class="tl-company">Cognizant · Google GTECH</div>
+      </div>
+      <div>
+        <div class="tl-role">Senior Process Executive</div>
+        <div class="tl-bullets">
+          <div class="tl-b">Analysed product health trends across Google My Business and Sitelinks; presented findings to Fortune 500 stakeholders and evangelised process improvements to client product teams.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="sec-label"><span class="sec-num">02</span><span class="sec-title">AI Products Shipped</span></div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-title">copilot.uniply.ai — AI University Search</div><div class="proj-year">2025</div></div>
+      <p class="proj-desc">Full-stack conversational AI platform — natural language search across 500+ courses at 107+ universities with real-time filtering, shortlisting, side-by-side comparison, and CSV/PDF export.</p>
+      <div class="proj-tags"><span class="tag t-n">n8n</span><span class="tag t-r">Flowise</span><span class="tag t-l">RAG</span><span class="tag t-s">SaaS</span></div>
+      <div class="proj-metric"><span class="mbadge">500+ courses</span><span>107+ universities</span></div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-title">Foresight — AI Career Strategist</div><div class="proj-year">2026</div></div>
+      <p class="proj-desc">Live AI SaaS scoring resume-to-JD alignment across 26 signals with 3 refinement modes (ATS Calibration, Strategic Resonance, Executive Pivot), Strategist Chat agent, and AI-generated 30-day action plans.</p>
+      <div class="proj-tags"><span class="tag t-l">LLM API</span><span class="tag t-a">Agent</span><span class="tag t-s">SaaS</span></div>
+      <div class="proj-metric"><span class="mbadge">26 signals</span><span>Live v1.2.4</span></div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-title">PitchSnap.in — AI Pitch Deck Analyzer</div><div class="proj-year">2026</div></div>
+      <p class="proj-desc">VC-style pitch deck review — 10-criteria scorecard, free preview + paid full report (₹499) via Razorpay, slide-by-slide feedback, and rewrite suggestions gated by backend payment verification.</p>
+      <div class="proj-tags"><span class="tag t-l">LLM</span><span class="tag t-s">SaaS · ₹499</span></div>
+      <div class="proj-metric"><span class="mbadge">10 criteria</span><span>Razorpay gated</span></div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-title">AI Vendor Risk Triage Agent</div><div class="proj-year">2026</div></div>
+      <p class="proj-desc">n8n pipeline automating vendor contract review (MSAs, SOC2, DPAs) — two-tier model architecture (gpt-4o-mini classifier + stronger extractor), Confidence Gate (0.8), Quote-Forced CoT to eliminate hallucination false negatives.</p>
+      <div class="proj-tags"><span class="tag t-n">n8n</span><span class="tag t-l">GPT-4o</span><span class="tag t-a">CoT</span></div>
+      <div class="proj-metric"><span class="mbadge">0.8 conf. gate</span><span>Zero false negatives</span></div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-title">Voice Agent QA & Coaching Pipeline</div><div class="proj-year">2026</div></div>
+      <p class="proj-desc">13-node n8n pipeline for contact centre QA — webhook transcript ingestion, 5-category classification (Gemini 2.5 Flash, Confidence Gate ≥0.7), parallel evaluation across 6 coaching dimensions, auto-fail detection for PII/compliance, Slack alerts, Google Sheets logging.</p>
+      <div class="proj-tags"><span class="tag t-n">n8n</span><span class="tag t-g">Gemini 2.5</span><span class="tag t-a">13 nodes</span></div>
+      <div class="proj-metric"><span class="mbadge">6 QA dimensions</span><span>Zero manual QA</span></div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-head"><div class="proj-title">AI Job Search Automation Agent</div><div class="proj-year">2026</div></div>
+      <p class="proj-desc">End-to-end job agent — fetches PM roles daily, LLM fit scoring against resume, auto-tailors bullets, generates cover notes per JD, and delivers a formatted HTML email digest. Zero manual input. 15-node workflow.</p>
+      <div class="proj-tags"><span class="tag t-n">n8n</span><span class="tag t-g">Gemini API</span><span class="tag t-a">15 nodes</span></div>
+      <div class="proj-metric"><span class="mbadge">15 nodes</span><span>Fully automated</span></div>
+      <div class="proj-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="sec-label"><span class="sec-num">03</span><span class="sec-title">Skills & Stack</span></div>
+  <div class="sk-layout">
+    <div>
+      <div class="sk-col-title">// Core PM Skills</div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">0–1 Product Ownership</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="95"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">PRD / MRD Writing</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="92"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">GTM Execution</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="88"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">Agile / Scrum</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="86"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">Stakeholder Management</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="87"></div></div></div>
+      <div class="sk-col-title" style="margin-top:28px">// AI & LLM</div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">Prompt Engineering</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="93"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">Agentic Workflows (n8n)</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill" data-w="91"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">RAG Pipelines</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="85"></div></div></div>
+      <div class="sk-item"><div class="sk-row"><span class="sk-name">LLM API Design</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill" data-w="88"></div></div></div>
+    </div>
+    <div>
+      <div class="sk-col-title">// Tools & Platforms</div>
+      <div class="pills" id="tools">
+        <div class="pill">SQL</div><div class="pill">Python</div><div class="pill">n8n</div>
+        <div class="pill">Flowise</div><div class="pill">OpenAI API</div><div class="pill">Claude API</div>
+        <div class="pill">Gemini API</div><div class="pill">Pinecone</div><div class="pill">LangSmith</div>
+        <div class="pill">Power BI</div><div class="pill">Mixpanel</div><div class="pill">AWS</div>
+        <div class="pill">Supabase</div><div class="pill">Figma</div><div class="pill">Jira</div>
+        <div class="pill">Razorpay</div><div class="pill">Google Sheets</div><div class="pill">Slack API</div>
+      </div>
+      <div class="sk-col-title" style="margin-top:28px">// LLM Techniques</div>
+      <div class="pills">
+        <div class="pill">Quote-Forced CoT</div><div class="pill">Confidence Gating</div>
+        <div class="pill">Two-Tier Models</div><div class="pill">Model Evaluation</div>
+        <div class="pill">Context Management</div><div class="pill">JSON Structured Output</div>
+        <div class="pill">RICE Prioritisation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec" id="education">
+  <div class="sec-label"><span class="sec-num">04</span><span class="sec-title">Education</span></div>
+  <div class="edu-cards">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-degree">PG Diploma in Big Data Analytics</div>
+        <div class="edu-school">Georgian College, Canada</div>
+        <div class="edu-meta">GPA 3.7 · 2021</div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">💻</div>
+      <div>
+        <div class="edu-degree">B.Tech in Computer Science</div>
+        <div class="edu-school">Invertis University</div>
+        <div class="edu-meta">2017</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-copy">© 2026 Shubhaditya Shubham · Built with intent.</div>
+  <div class="f-links">
+    <a class="f-link" href="mailto:shubhadityashubham@gmail.com">EMAIL</a>
+    <a class="f-link" href="https://linkedin.com/in/shubhaditya-shubham" target="_blank">LINKEDIN</a>
+    <span class="f-link" onclick="window.print()">PRINT PDF</span>
+  </div>
+</footer>
+
+</main>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════════ */
+const cursorDot  = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursorDot.style.left = mx + 'px';
+  cursorDot.style.top  = my + 'px';
+});
+
+(function animateRing(){
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  cursorRing.style.left = rx + 'px';
+  cursorRing.style.top  = ry + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+document.querySelectorAll('a,button,.nav-item,.proj-card,.pill,.clink,.term-chip,.term-send-btn,.f-link').forEach(el=>{
+  el.addEventListener('mouseenter', ()=> document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', ()=> document.body.classList.remove('cursor-hover'));
+});
+
+
+/* ══════════════════════════════════════════
+   NEURAL NETWORK CANVAS
+══════════════════════════════════════════ */
+const canvas = document.getElementById('neural-canvas');
+const ctx    = canvas.getContext('2d');
+let W, H, nodes=[], mouse={x:-999,y:-999};
+const NODE_COUNT = 90;
+const MAX_DIST   = 160;
+const MOUSE_RADIUS = 200;
+
+function resize(){
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+document.addEventListener('mousemove', e => { mouse.x=e.clientX; mouse.y=e.clientY; });
+
+// Node class
+class Node {
+  constructor(){
+    this.x  = Math.random()*W;
+    this.y  = Math.random()*H;
+    this.vx = (Math.random()-.5)*.4;
+    this.vy = (Math.random()-.5)*.4;
+    this.r  = Math.random()*2+1;
+    this.base = { x:this.x, y:this.y };
+  }
+  update(){
+    this.x += this.vx;
+    this.y += this.vy;
+    if(this.x<0||this.x>W) this.vx*=-1;
+    if(this.y<0||this.y>H) this.vy*=-1;
+
+    // mouse repulsion
+    const dx = this.x - mouse.x;
+    const dy = this.y - mouse.y;
+    const d  = Math.sqrt(dx*dx+dy*dy);
+    if(d < MOUSE_RADIUS){
+      const force = (MOUSE_RADIUS - d) / MOUSE_RADIUS;
+      this.x += dx/d * force * 2.5;
+      this.y += dy/d * force * 2.5;
+    }
+  }
+  draw(){
+    const dx=this.x-mouse.x, dy=this.y-mouse.y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    const glow = d < MOUSE_RADIUS ? 1-(d/MOUSE_RADIUS) : 0;
+    const alpha = 0.35 + glow*0.55;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r + glow*2, 0, Math.PI*2);
+    ctx.fillStyle = glow > 0.3 ? `rgba(0,229,195,${alpha})` : `rgba(90,140,180,${alpha})`;
+    ctx.fill();
+    if(glow > 0.4){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, (this.r+glow*2)*2, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(0,229,195,${glow*0.15})`;
+      ctx.fill();
+    }
+  }
+}
+
+for(let i=0;i<NODE_COUNT;i++) nodes.push(new Node());
+
+function drawConnections(){
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<MAX_DIST){
+        const alpha = (1-d/MAX_DIST)*0.25;
+        // near mouse: brighter connections
+        const mdx=((nodes[i].x+nodes[j].x)/2)-mouse.x;
+        const mdy=((nodes[i].y+nodes[j].y)/2)-mouse.y;
+        const md=Math.sqrt(mdx*mdx+mdy*mdy);
+        const boost = md < MOUSE_RADIUS ? (1-md/MOUSE_RADIUS)*0.5 : 0;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(nodes[j].x,nodes[j].y);
+        ctx.strokeStyle = boost>0.2 ? `rgba(0,229,195,${alpha+boost})` : `rgba(60,120,160,${alpha})`;
+        ctx.lineWidth = boost>0.2 ? 1.2 : 0.7;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animateNeural(){
+  ctx.clearRect(0,0,W,H);
+  drawConnections();
+  nodes.forEach(n=>{ n.update(); n.draw(); });
+  requestAnimationFrame(animateNeural);
+}
+animateNeural();
+
+
+/* ══════════════════════════════════════════
+   TYPEWRITER
+══════════════════════════════════════════ */
+const phrases = ["AI-First Product Manager","0–1 Builder","LLM Agent Designer","Agentic Workflow Architect","Prompt Engineer"];
+let pi=0,ci=0,del=false;
+const tel=document.getElementById('typed');
+function type(){
+  const p=phrases[pi];
+  if(!del){ tel.textContent=p.slice(0,++ci); if(ci===p.length){del=true;setTimeout(type,1900);return;} }
+  else { tel.textContent=p.slice(0,--ci); if(ci===0){del=false;pi=(pi+1)%phrases.length;} }
+  setTimeout(type,del?36:70);
+}
+type();
+
+
+/* ══════════════════════════════════════════
+   COUNTER ANIMATIONS
+══════════════════════════════════════════ */
+function animateCounter(el){
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+  function step(now){
+    const progress = Math.min((now-start)/duration, 1);
+    const ease = 1 - Math.pow(1-progress, 3);
+    el.textContent = Math.floor(ease*target) + suffix;
+    if(progress<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+      counterObserver.unobserve(en.target);
+    }
+  });
+},{threshold:.4});
+const heroSec = document.getElementById('hero');
+if(heroSec) counterObserver.observe(heroSec);
+
+
+/* ══════════════════════════════════════════
+   NAV SPY
+══════════════════════════════════════════ */
+function goTo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'}); }
+const secs=['hero','experience','projects','skills','education'];
+const navItems=document.querySelectorAll('.nav-item:not(.terminal-nav)');
+const io=new IntersectionObserver(e=>e.forEach(en=>{
+  if(en.isIntersecting){
+    const i=secs.indexOf(en.target.id);
+    navItems.forEach((n,j)=>n.classList.toggle('active',i===j));
+  }
+}),{threshold:.25, rootMargin:'0px 0px -55% 0px'});
+secs.forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el);});
+
+
+/* ══════════════════════════════════════════
+   SCROLL PROGRESS
+══════════════════════════════════════════ */
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const el = document.documentElement;
+  const s = el.scrollTop || document.body.scrollTop;
+  const h = el.scrollHeight - el.clientHeight;
+  progressBar.style.transform = `scaleX(${s/h})`;
+},{passive:true});
+
+
+/* ══════════════════════════════════════════
+   REVEAL ON SCROLL
+══════════════════════════════════════════ */
+const rev=new IntersectionObserver(e=>e.forEach(en=>{
+  if(en.isIntersecting){
+    en.target.classList.add('vis');
+    en.target.querySelectorAll('.sk-fill').forEach(b=>{ b.style.width=b.dataset.w+'%'; });
+    rev.unobserve(en.target);
+  }
+}),{threshold:.06});
+document.querySelectorAll('.tl-item,.proj-card,.sk-item,.pill,.edu-card').forEach((el,i)=>{
+  el.style.transitionDelay=(i%6)*.055+'s';
+  rev.observe(el);
+});
+const skillIO=new IntersectionObserver(e=>{
+  if(e[0].isIntersecting) document.querySelectorAll('.sk-fill').forEach(b=>b.style.width=b.dataset.w+'%');
+},{threshold:.1});
+const sk=document.getElementById('skills'); if(sk) skillIO.observe(sk);
+
+
+/* ══════════════════════════════════════════
+   3D CARD TILT
+══════════════════════════════════════════ */
+document.querySelectorAll('.proj-card').forEach(card=>{
+  card.addEventListener('mousemove', e=>{
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const dx = (e.clientX - cx) / (rect.width/2);
+    const dy = (e.clientY - cy) / (rect.height/2);
+    const tiltX = dy * -8;
+    const tiltY = dx * 8;
+    card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+    // spotlight
+    const mx = ((e.clientX-rect.left)/rect.width)*100;
+    const my = ((e.clientY-rect.top)/rect.height)*100;
+    card.style.setProperty('--mx', mx+'%');
+    card.style.setProperty('--my', my+'%');
+  });
+  card.addEventListener('mouseleave', ()=>{
+    card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) scale(1)';
+    card.style.transition = 'transform .5s ease, opacity .5s, border-color .25s, box-shadow .25s';
+  });
+  card.addEventListener('mouseenter', ()=>{
+    card.style.transition = 'transform .1s ease, opacity .5s, border-color .25s, box-shadow .25s';
+  });
+});
+
+
+/* ══════════════════════════════════════════
+   ASK SHUBHADITYA TERMINAL
+══════════════════════════════════════════ */
+const RESUME_CONTEXT = `
+You are Shubhaditya Shubham's AI portfolio assistant. Answer questions about Shubhaditya concisely and in first-person plural (e.g. "He has..."). Be specific and data-driven. Keep answers under 5 sentences unless detail is requested.
+
+ABOUT SHUBHADITYA:
+- AI-First Product Manager, 7+ years experience in product, data, and operations
+- Location: India (Delhi) | Email: shubhadityashubham@gmail.com | LinkedIn: linkedin.com/in/shubhaditya-shubham | Phone: +91 93894 78989
+
+EXPERIENCE:
+1. Acting Product Manager @ AdmitKard / Uniply.ai (Apr 2025 – Feb 2026)
+   - Owned 0-to-1 roadmap for Uniply.ai (LLM-powered SaaS)
+   - Reduced AWS costs by 75%, scaled capacity 5×, cut manual effort 50%
+   - Used RICE prioritisation, Mixpanel, Power BI, Agile/Scrum
+2. Product Analyst @ AdmitKard (Mar 2024 – Mar 2025)
+   - 80% reduction in manual processing via intelligent routing (4+ banking integrations)
+   - SQL, Excel, data-driven performance reports
+3. Operations Associate @ Amazon Canada (Oct 2022 – Aug 2023)
+   - SQL KPI pipelines, volume forecasting, fulfilment operations
+4. Senior Process Executive @ Cognizant/Google GTECH (Aug 2017 – Jun 2021)
+   - Google My Business product health, Fortune 500 stakeholders
+
+AI PRODUCTS SHIPPED (6 total):
+1. copilot.uniply.ai – Conversational AI search: 500+ courses, 107+ universities, RAG, n8n, Flowise
+2. Foresight – Resume-to-JD scoring SaaS: 26 signals, 3 refinement modes, Agent chat, 30-day plans
+3. PitchSnap.in – VC pitch deck analyzer: 10 criteria, Razorpay payment gate (₹499), live SaaS
+4. AI Vendor Risk Triage Agent – n8n contract review: GPT-4o, 0.8 confidence gate, Quote-Forced CoT
+5. Voice Agent QA Pipeline – 13-node n8n: Gemini 2.5 Flash, 6 QA dimensions, zero manual QA
+6. AI Job Search Agent – 15-node n8n: daily job fetch, LLM fit scoring, auto-tailored cover notes
+
+SKILLS:
+Core PM: 0–1 product ownership, PRD/MRD writing, GTM execution, Agile/Scrum, stakeholder management
+AI/LLM: Prompt engineering, agentic workflows (n8n), RAG pipelines, LLM API design
+Tech stack: SQL, Python, n8n, Flowise, OpenAI/Claude/Gemini APIs, Pinecone, LangSmith, Power BI, Mixpanel, AWS, Supabase, Figma, Jira, Razorpay, Slack API
+LLM techniques: Quote-Forced CoT, Confidence Gating, Two-Tier Models, JSON Structured Output, RICE
+
+EDUCATION:
+- PG Diploma in Big Data Analytics – Georgian College, Canada (GPA 3.7, 2021)
+- B.Tech Computer Science – Invertis University (2017)
+`;
+
+const termOverlay = document.getElementById('terminal-overlay');
+const termOutput  = document.getElementById('term-output');
+const termInput   = document.getElementById('term-input');
+
+function openTerminal(){
+  termOverlay.classList.add('open');
+  setTimeout(()=>termInput.focus(), 100);
+}
+function closeTerminal(){
+  termOverlay.classList.remove('open');
+}
+termOverlay.addEventListener('click', e=>{ if(e.target===termOverlay) closeTerminal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeTerminal(); });
+
+function appendLine(text, cls='ai'){
+  const div = document.createElement('div');
+  div.className = `term-line ${cls}`;
+  div.textContent = text;
+  termOutput.appendChild(div);
+  termOutput.scrollTop = termOutput.scrollHeight;
+  return div;
+}
+
+function typewriterLine(el, text, speed=14){
+  return new Promise(resolve=>{
+    let i=0;
+    el.textContent='';
+    const iv = setInterval(()=>{
+      el.textContent += text[i++];
+      termOutput.scrollTop = termOutput.scrollHeight;
+      if(i>=text.length){ clearInterval(iv); resolve(); }
+    }, speed);
+  });
+}
+
+function chipClick(chip){
+  termInput.value = chip.textContent;
+  sendTerminalMessage();
+}
+
+termInput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendTerminalMessage(); });
+
+async function sendTerminalMessage(){
+  const q = termInput.value.trim();
+  if(!q) return;
+  termInput.value='';
+
+  document.getElementById('term-chips').style.display='none';
+
+  // Print user message
+  appendLine(`> ${q}`, 'user');
+  const thinking = appendLine('⟳ Processing request...', 'term-thinking');
+
+  try {
+    // Call your secure Vercel backend
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: q })
+    });
+
+    if (!response.ok) throw new Error('Backend error');
+
+    const data = await response.json();
+    thinking.remove();
+    
+    // Type out the AI's response
+    const aiLine = appendLine('', 'ai');
+    await typewriterLine(aiLine, data.reply, 12);
+    appendLine('', 'system');
+
+  } catch(err) {
+    thinking.remove();
+    appendLine('⚠ Connection error. Ensure you are viewing the live Vercel deployment.', 'error');
+  }
+}
+</script>
+</body>
+</html>
