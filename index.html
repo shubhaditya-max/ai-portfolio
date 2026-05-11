@@ -404,80 +404,25 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   z-index:300; transition:transform .05s linear;
 }
 
-/* ── RESPONSIVE DESIGN (Tablets & Mobile) ──────────────── */
-@media(max-width: 1100px) {
-  .sidebar { width: 220px; }
-  .main { margin-left: 220px; }
-  .hero, .sec { padding: 60px 40px; }
-  .sk-layout { grid-template-columns: 1fr; gap: 40px; }
-  #scroll-progress { left: 220px; }
-}
-
-@media(max-width: 900px) {
-  body { cursor: auto; overflow-x: hidden; }
-  #cursor-dot, #cursor-ring { display: none; }
-  
-  /* Critical Fix: Change layout to block to let content stack vertically */
-  .layout { display: block; width: 100%; }
-  
-  /* Sidebar becomes a top header */
-  .sidebar { 
-    position: relative; 
-    width: 100%; 
-    height: auto; 
-    border-right: none; 
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-    z-index: 200;
-  }
-  
-  .sb-brand { padding: 24px; border-bottom: none; }
-  .sb-nav { 
-    display: flex; 
-    overflow-x: auto; 
-    padding: 0 24px 10px; 
-    gap: 8px;
-    -webkit-overflow-scrolling: touch;
-  }
-  .sb-nav::-webkit-scrollbar { display: none; }
-  .nav-label { display: none; }
-  
-  .nav-item { 
-    white-space: nowrap; 
-    padding: 8px 16px; 
-    border-left: none; 
-    border-bottom: 2px solid transparent;
-    background: var(--bg2);
-    border-radius: 4px;
-    display: inline-flex;
-  }
-  .nav-item.active { border-bottom-color: var(--accent); }
-  .nav-item.terminal-nav { margin-top: 0; border-top: none; }
-
-  /* Critical Fix: Reset margin-left to 0 so content appears on screen */
-  .main { 
-    margin-left: 0; 
-    width: 100%;
-    position: relative;
-  }
-  
-  #scroll-progress { left: 0; }
-  
-  .hero { padding: 60px 24px; min-height: auto; }
-  .hero-name { font-size: 42px; }
-  .hero-stats { gap: 20px; }
-  .stat-num { font-size: 26px; }
-  
-  .proj-grid { grid-template-columns: 1fr; }
-  .tl-item { grid-template-columns: 1fr; gap: 10px; }
-}
-
-@media(max-width: 600px) {
-  .hero-name { font-size: 34px; }
-  .sec { padding: 40px 20px; }
-  .edu-card { flex-direction: column; gap: 12px; }
-  
-  #terminal-box { width: 95vw; height: 85vh; }
+/* ── MOBILE ────────────────────────────────────── */
+@media(max-width:900px){
+  .layout { grid-template-columns:1fr; }
+  .sidebar { position:static; width:100%; height:auto; flex-direction:row; flex-wrap:wrap; padding:16px; border-right:none; border-bottom:1px solid var(--border); }
+  .sb-brand { padding:0 16px 0 0; border-bottom:none; }
+  .sb-nav { display:flex; flex-wrap:wrap; padding:0; flex:unset; }
+  .nav-label { display:none; }
+  .nav-item { padding:5px 10px; font-size:12px; }
+  .sb-contact { flex-direction:row; flex-wrap:wrap; padding:8px 0 0; border-top:none; gap:8px; }
+  .main { margin-left:0; }
+  .hero,.sec { padding:40px 24px; }
+  .tl-item { grid-template-columns:1fr; }
+  .tl-date,.tl-company { display:inline; }
+  .proj-grid { grid-template-columns:1fr; }
+  .sk-layout { grid-template-columns:1fr; gap:32px; }
+  footer { flex-direction:column; gap:14px; padding:28px 24px; }
+  #scroll-progress { left:0; }
+  body { cursor:auto; }
+  #cursor-dot, #cursor-ring { display:none; }
 }
 
 /* ── PRINT ─────────────────────────────────────── */
@@ -493,13 +438,17 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
 </head>
 <body>
 
+<!-- CUSTOM CURSOR -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
+<!-- NEURAL NETWORK CANVAS -->
 <canvas id="neural-canvas"></canvas>
 
+<!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
+<!-- ASK TERMINAL -->
 <div id="terminal-overlay">
   <div id="terminal-box">
     <div class="term-header">
@@ -528,6 +477,7 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
 
 <div class="layout">
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-brand">
     <div class="sb-name">Shubhaditya<br>Shubham</div>
@@ -550,8 +500,10 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   </div>
 </aside>
 
+<!-- MAIN -->
 <main class="main">
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow-1"></div>
@@ -575,6 +527,7 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section class="sec" id="experience">
   <div class="sec-label"><span class="sec-num">01</span><span class="sec-title">Experience</span></div>
   <div>
@@ -633,6 +586,7 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section class="sec" id="projects">
   <div class="sec-label"><span class="sec-num">02</span><span class="sec-title">AI Products Shipped</span></div>
   <div class="proj-grid">
@@ -681,6 +635,7 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   </div>
 </section>
 
+<!-- SKILLS -->
 <section class="sec" id="skills">
   <div class="sec-label"><span class="sec-num">03</span><span class="sec-title">Skills & Stack</span></div>
   <div class="sk-layout">
@@ -718,6 +673,7 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   </div>
 </section>
 
+<!-- EDUCATION -->
 <section class="sec" id="education">
   <div class="sec-label"><span class="sec-num">04</span><span class="sec-title">Education</span></div>
   <div class="edu-cards">
@@ -799,7 +755,6 @@ window.addEventListener('resize', resize);
 
 document.addEventListener('mousemove', e => { mouse.x=e.clientX; mouse.y=e.clientY; });
 
-// Node class
 class Node {
   constructor(){
     this.x  = Math.random()*W;
@@ -814,8 +769,6 @@ class Node {
     this.y += this.vy;
     if(this.x<0||this.x>W) this.vx*=-1;
     if(this.y<0||this.y>H) this.vy*=-1;
-
-    // mouse repulsion
     const dx = this.x - mouse.x;
     const dy = this.y - mouse.y;
     const d  = Math.sqrt(dx*dx+dy*dy);
@@ -852,7 +805,6 @@ function drawConnections(){
       const d=Math.sqrt(dx*dx+dy*dy);
       if(d<MAX_DIST){
         const alpha = (1-d/MAX_DIST)*0.25;
-        // near mouse: brighter connections
         const mdx=((nodes[i].x+nodes[j].x)/2)-mouse.x;
         const mdy=((nodes[i].y+nodes[j].y)/2)-mouse.y;
         const md=Math.sqrt(mdx*mdx+mdy*mdy);
@@ -978,14 +930,9 @@ document.querySelectorAll('.proj-card').forEach(card=>{
     const cy = rect.top + rect.height/2;
     const dx = (e.clientX - cx) / (rect.width/2);
     const dy = (e.clientY - cy) / (rect.height/2);
-    const tiltX = dy * -8;
-    const tiltY = dx * 8;
-    card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
-    // spotlight
-    const mx = ((e.clientX-rect.left)/rect.width)*100;
-    const my = ((e.clientY-rect.top)/rect.height)*100;
-    card.style.setProperty('--mx', mx+'%');
-    card.style.setProperty('--my', my+'%');
+    card.style.transform = `perspective(900px) rotateX(${dy * -8}deg) rotateY(${dx * 8}deg) scale(1.02)`;
+    card.style.setProperty('--mx', ((e.clientX-rect.left)/rect.width)*100+'%');
+    card.style.setProperty('--my', ((e.clientY-rect.top)/rect.height)*100+'%');
   });
   card.addEventListener('mouseleave', ()=>{
     card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) scale(1)';
@@ -1000,48 +947,12 @@ document.querySelectorAll('.proj-card').forEach(card=>{
 /* ══════════════════════════════════════════
    ASK SHUBHADITYA TERMINAL
 ══════════════════════════════════════════ */
-const RESUME_CONTEXT = `
-You are Shubhaditya Shubham's AI portfolio assistant. Answer questions about Shubhaditya concisely and in first-person plural (e.g. "He has..."). Be specific and data-driven. Keep answers under 5 sentences unless detail is requested.
-
-ABOUT SHUBHADITYA:
-- AI-First Product Manager, 7+ years experience in product, data, and operations
-- Location: India (Delhi) | Email: shubhadityashubham@gmail.com | LinkedIn: linkedin.com/in/shubhaditya-shubham | Phone: +91 93894 78989
-
-EXPERIENCE:
-1. Acting Product Manager @ AdmitKard / Uniply.ai (Apr 2025 – Feb 2026)
-   - Owned 0-to-1 roadmap for Uniply.ai (LLM-powered SaaS)
-   - Reduced AWS costs by 75%, scaled capacity 5×, cut manual effort 50%
-   - Used RICE prioritisation, Mixpanel, Power BI, Agile/Scrum
-2. Product Analyst @ AdmitKard (Mar 2024 – Mar 2025)
-   - 80% reduction in manual processing via intelligent routing (4+ banking integrations)
-   - SQL, Excel, data-driven performance reports
-3. Operations Associate @ Amazon Canada (Oct 2022 – Aug 2023)
-   - SQL KPI pipelines, volume forecasting, fulfilment operations
-4. Senior Process Executive @ Cognizant/Google GTECH (Aug 2017 – Jun 2021)
-   - Google My Business product health, Fortune 500 stakeholders
-
-AI PRODUCTS SHIPPED (6 total):
-1. copilot.uniply.ai – Conversational AI search: 500+ courses, 107+ universities, RAG, n8n, Flowise
-2. Foresight – Resume-to-JD scoring SaaS: 26 signals, 3 refinement modes, Agent chat, 30-day plans
-3. PitchSnap.in – VC pitch deck analyzer: 10 criteria, Razorpay payment gate (₹499), live SaaS
-4. AI Vendor Risk Triage Agent – n8n contract review: GPT-4o, 0.8 confidence gate, Quote-Forced CoT
-5. Voice Agent QA Pipeline – 13-node n8n: Gemini 2.5 Flash, 6 QA dimensions, zero manual QA
-6. AI Job Search Agent – 15-node n8n: daily job fetch, LLM fit scoring, auto-tailored cover notes
-
-SKILLS:
-Core PM: 0–1 product ownership, PRD/MRD writing, GTM execution, Agile/Scrum, stakeholder management
-AI/LLM: Prompt engineering, agentic workflows (n8n), RAG pipelines, LLM API design
-Tech stack: SQL, Python, n8n, Flowise, OpenAI/Claude/Gemini APIs, Pinecone, LangSmith, Power BI, Mixpanel, AWS, Supabase, Figma, Jira, Razorpay, Slack API
-LLM techniques: Quote-Forced CoT, Confidence Gating, Two-Tier Models, JSON Structured Output, RICE
-
-EDUCATION:
-- PG Diploma in Big Data Analytics – Georgian College, Canada (GPA 3.7, 2021)
-- B.Tech Computer Science – Invertis University (2017)
-`;
-
 const termOverlay = document.getElementById('terminal-overlay');
 const termOutput  = document.getElementById('term-output');
 const termInput   = document.getElementById('term-input');
+
+// Conversation history for multi-turn memory
+const conversationHistory = [];
 
 function openTerminal(){
   termOverlay.classList.add('open');
@@ -1088,30 +999,41 @@ async function sendTerminalMessage(){
 
   document.getElementById('term-chips').style.display='none';
 
-  // Print user message
+  // Add user message to history
+  conversationHistory.push({ role: 'user', parts: [{ text: q }] });
+
   appendLine(`> ${q}`, 'user');
   const thinking = appendLine('⟳ Processing request...', 'term-thinking');
 
   try {
-    // Call your secure Vercel backend
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: q })
+      body: JSON.stringify({
+        message: q,
+        history: conversationHistory  // send full history for context
+      })
     });
 
     if (!response.ok) throw new Error('Backend error');
 
     const data = await response.json();
+
+    if (data.error) throw new Error(data.error);
+
     thinking.remove();
-    
-    // Type out the AI's response
+
+    // Add AI reply to history
+    conversationHistory.push({ role: 'model', parts: [{ text: data.reply }] });
+
     const aiLine = appendLine('', 'ai');
     await typewriterLine(aiLine, data.reply, 12);
     appendLine('', 'system');
 
   } catch(err) {
     thinking.remove();
+    // Remove the failed user message from history to keep it clean
+    conversationHistory.pop();
     appendLine('⚠ Connection error. Ensure you are viewing the live Vercel deployment.', 'error');
   }
 }
