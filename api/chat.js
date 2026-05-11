@@ -36,7 +36,7 @@ BAD EXAMPLE:
 
 GOOD EXAMPLE:
 "Not in traditional finance, no. Closest I've gotten is building an AI agent that reviews vendor 
-contracts — MSAs, SOC2, DPAs — flags risks and compliance gaps automatically."
+contracts — MSAs, SOC2, DPAs — flags risks and compliance gaps automatically."`;
 
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
