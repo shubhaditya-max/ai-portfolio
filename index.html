@@ -404,25 +404,96 @@ footer { padding:36px 64px; display:flex; justify-content:space-between; align-i
   z-index:300; transition:transform .05s linear;
 }
 
-/* ── MOBILE ────────────────────────────────────── */
-@media(max-width:900px){
-  .layout { grid-template-columns:1fr; }
-  .sidebar { position:static; width:100%; height:auto; flex-direction:row; flex-wrap:wrap; padding:16px; border-right:none; border-bottom:1px solid var(--border); }
-  .sb-brand { padding:0 16px 0 0; border-bottom:none; }
-  .sb-nav { display:flex; flex-wrap:wrap; padding:0; flex:unset; }
-  .nav-label { display:none; }
-  .nav-item { padding:5px 10px; font-size:12px; }
-  .sb-contact { flex-direction:row; flex-wrap:wrap; padding:8px 0 0; border-top:none; gap:8px; }
-  .main { margin-left:0; }
-  .hero,.sec { padding:40px 24px; }
-  .tl-item { grid-template-columns:1fr; }
-  .tl-date,.tl-company { display:inline; }
-  .proj-grid { grid-template-columns:1fr; }
-  .sk-layout { grid-template-columns:1fr; gap:32px; }
-  footer { flex-direction:column; gap:14px; padding:28px 24px; }
-  #scroll-progress { left:0; }
-  body { cursor:auto; }
-  #cursor-dot, #cursor-ring { display:none; }
+/* ── RESPONSIVE DESIGN (Tablets & Mobile) ──────────────── */
+@media(max-width: 1100px) {
+  .sidebar { width: 220px; }
+  .main { margin-left: 220px; }
+  .hero, .sec { padding: 60px 40px; }
+  .sk-layout { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media(max-width: 900px) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
+  
+  .layout { display: block; }
+  
+  /* Sidebar becomes a top/mobile nav */
+  .sidebar { 
+    position: relative; 
+    width: 100%; 
+    height: auto; 
+    border-right: none; 
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  
+  .sb-brand { padding: 24px; border-bottom: none; }
+  .sb-nav { padding: 0 24px 10px; }
+  .nav-label { display: none; }
+  
+  .sb-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .sb-nav::-webkit-scrollbar { display: none; }
+  
+  .nav-item { 
+    white-space: nowrap; 
+    padding: 8px 16px; 
+    border-left: none; 
+    border-bottom: 2px solid transparent;
+    background: var(--bg2);
+    border-radius: 4px;
+  }
+  .nav-item.active { border-left-color: transparent; border-bottom-color: var(--accent); }
+  .nav-item.terminal-nav { margin-top: 0; border-top: none; }
+
+  .sb-contact { 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    padding: 15px 24px; 
+    background: var(--bg3);
+  }
+
+  .main { margin-left: 0; }
+  #scroll-progress { left: 0; }
+  
+  /* Hero adjustments */
+  .hero { padding: 80px 24px; min-height: 80vh; }
+  .hero-name { font-size: 48px; }
+  .hero-stats { gap: 24px; }
+  .stat-num { font-size: 28px; }
+  
+  /* Grid adjustments */
+  .proj-grid { grid-template-columns: 1fr; }
+  .tl-item { grid-template-columns: 1fr; gap: 10px; }
+  .tl-date { margin-bottom: 2px; }
+}
+
+@media(max-width: 600px) {
+  .hero-name { font-size: 38px; }
+  .sec { padding: 40px 20px; }
+  .edu-card { flex-direction: column; gap: 12px; }
+  
+  #terminal-box { 
+    width: 96vw; 
+    height: 90vh; 
+    display: flex; 
+    flex-direction: column; 
+  }
+  #term-output { height: 100%; }
+  .term-input-row { padding-bottom: 24px; }
+  
+  footer { 
+    flex-direction: column; 
+    text-align: center; 
+    gap: 20px; 
+    padding: 40px 20px; 
+  }
 }
 
 /* ── PRINT ─────────────────────────────────────── */
