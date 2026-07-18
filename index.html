@@ -445,6 +445,10 @@
                     .sb-nav, .sb-contact { padding:4px 0; }
                     .sec { padding:16px 0; min-height:0; }
                     .hero-grid,.hero-glow-1,.hero-glow-2,body::after,#neural-canvas,#cursor-dot,#cursor-ring,#terminal-overlay,#scroll-progress,.dot,.nav-item.terminal-nav { display:none!important; }
+                    .tl-item, .proj-card, .sk-item, .pill, .edu-card,
+                    .tl-item.vis, .proj-card.vis, .sk-item.vis, .pill.vis, .edu-card.vis {
+                      opacity:1!important; transform:none!important; transition:none!important;
+                    }
                     .tl-b { color:#333; }
                     .proj-card,.tl-item,.sk-item,.edu-card { break-inside:avoid; box-shadow:none!important; }
                     .proj-card:hover, .proj-card { transform:none!important; }
@@ -454,6 +458,10 @@
                   <script>
                     window.addEventListener('beforeprint', function(){
                       document.querySelectorAll('.proj-card').forEach(function(c){ c.style.transform='none'; });
+                      document.querySelectorAll('.sk-fill').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+                      document.querySelectorAll('.stat-num[data-target]').forEach(function(el){
+                        el.textContent = el.dataset.target + (el.dataset.suffix || '');
+                      });
                     });
                   </script>
                   </head>
