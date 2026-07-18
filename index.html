@@ -435,14 +435,25 @@
 
                   /* ── PRINT ─────────────────────────────────────── */
                   @media print {
-                    body { background:#fff; color:#111; cursor:auto; }
-                    :root { --text:#111; --muted:#555; --accent:#0055cc; --bg2:#f5f5f5; --border:#ddd; --dim:#888; }
-                    .sidebar { position:static; width:100%; height:auto; background:#f5f5f5; border:none; flex-direction:row; }
+                    body { background:#fff; color:#111; cursor:auto; font-size:11px; }
+                    :root { --text:#111; --muted:#555; --accent:#0055cc; --bg:#fff; --bg2:#f5f5f5; --bg3:#fafafa; --border:#ddd; --dim:#888; }
+                    .layout { min-height:0; display:block; }
+                    .sidebar { position:static; width:100%; height:auto; background:#f5f5f5; border:none; flex-direction:row; flex-wrap:wrap; overflow:visible; }
                     .main { margin-left:0; }
-                    .hero-grid,.hero-glow-1,.hero-glow-2,body::after,#neural-canvas,#cursor-dot,#cursor-ring,#terminal-overlay,#scroll-progress { display:none!important; }
-                    .sec { break-inside:avoid; }
+                    .hero { min-height:0; padding:24px 0; background:#fff; }
+                    .sec { padding:24px 0; min-height:0; break-inside:avoid; }
+                    .hero-grid,.hero-glow-1,.hero-glow-2,body::after,#neural-canvas,#cursor-dot,#cursor-ring,#terminal-overlay,#scroll-progress,.dot,.nav-item.terminal-nav { display:none!important; }
+                    .tl-b { color:#333; }
+                    .proj-card,.tl-item,.sk-item,.edu-card { break-inside:avoid; box-shadow:none!important; }
+                    .proj-card:hover, .proj-card { transform:none!important; }
+                    a[href]::after { content:''; }
                   }
                   </style>
+                  <script>
+                    window.addEventListener('beforeprint', function(){
+                      document.querySelectorAll('.proj-card').forEach(function(c){ c.style.transform='none'; });
+                    });
+                  </script>
                   </head>
                   <body>
 
